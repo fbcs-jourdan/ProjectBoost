@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d080qh26jcov4"]
+[gd_scene load_steps=10 format=3 uid="uid://br2i7rw0qsao1"]
 
-[ext_resource type="Script" uid="uid://bt1h1k6bxsyst" path="res://Levels/landing_pad.gd" id="1_ty1rc"]
-[ext_resource type="PackedScene" uid="uid://c3l7ssas4odat" path="res://Player/player.tscn" id="2_m135w"]
+[ext_resource type="Script" uid="uid://bt1h1k6bxsyst" path="res://Levels/landing_pad.gd" id="1_8fnhn"]
+[ext_resource type="PackedScene" uid="uid://c3l7ssas4odat" path="res://Player/player.tscn" id="2_n1e7r"]
+[ext_resource type="PackedScene" uid="uid://ik66sj5vfmde" path="res://Levels/moving_obstacle.tscn" id="3_n1e7r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_54b6e"]
 sky_top_color = Color(0.2987501, 0.5316506, 1, 1)
@@ -19,9 +20,6 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54b6e"]
 albedo_color = Color(0.44236898, 0.1863504, 0.08769206, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ty1rc"]
-albedo_color = Color(1, 0.75, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s41d2"]
 albedo_color = Color(0, 1, 0.35000014, 1)
@@ -44,18 +42,12 @@ use_collision = true
 size = Vector3(30, 8, 5)
 material = SubResource("StandardMaterial3D_54b6e")
 
-[node name="Obstacle" type="CSGBox3D" parent="." groups=["Floor"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4893963, 0)
-use_collision = true
-size = Vector3(3, 3, 3)
-material = SubResource("StandardMaterial3D_ty1rc")
-
 [node name="LandingPad" type="CSGBox3D" parent="." groups=["Goal"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
 use_collision = true
 size = Vector3(2, 0.4, 2)
 material = SubResource("StandardMaterial3D_s41d2")
-script = ExtResource("1_ty1rc")
+script = ExtResource("1_8fnhn")
 file_path = "uid://2ys6i28x4sab"
 
 [node name="LaunchPad" type="CSGBox3D" parent="."]
@@ -67,6 +59,8 @@ material = SubResource("StandardMaterial3D_gtnvv")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9995598, -0.029666243, 0, 0.029666243, 0.9995598, 0, 3.514, 8.89)
 
-[node name="Player" parent="." instance=ExtResource("2_m135w")]
+[node name="Player" parent="." instance=ExtResource("2_n1e7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.2078178, 0)
 max_contacts_reported = 10
+
+[node name="MovingObstacle" parent="." groups=["Floor"] instance=ExtResource("3_n1e7r")]
