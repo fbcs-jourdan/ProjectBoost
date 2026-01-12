@@ -1,7 +1,7 @@
 extends AnimatableBody3D
 
 @export var destination : Vector3
-@export var duration : float = .1
+@export var duration : float = 1.0
 
 func _ready() -> void:
 	var tween = create_tween()
