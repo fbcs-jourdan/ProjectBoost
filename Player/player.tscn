@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3l7ssas4odat"]
+[gd_scene load_steps=11 format=3 uid="uid://c3l7ssas4odat"]
 
 [ext_resource type="Script" uid="uid://dqpwp502kfjaf" path="res://Player/player.gd" id="1_4flbx"]
 [ext_resource type="AudioStream" uid="uid://bpehih57nij7r" path="res://assets/ProjectBoost_Audio/SFX - Death Explosion.ogg" id="2_4ntmi"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ux6ivcx1ovdp" path="res://Particles/Particles/booster_particles.tscn" id="5_k53q1"]
 [ext_resource type="PackedScene" uid="uid://dcecb8hw7dbrv" path="res://Particles/18_PB_G3D - One Shot Particles/Particles/explosion_particles.tscn" id="6_fhl08"]
 [ext_resource type="PackedScene" uid="uid://jfwajmrh6ca7" path="res://Particles/18_PB_G3D - One Shot Particles/Particles/success_particles.tscn" id="7_vtle1"]
+[ext_resource type="PackedScene" uid="uid://dnx5wqdh5peg8" path="res://Player/ship.tscn" id="8_od3ui"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_i3pqv"]
 
@@ -22,6 +23,7 @@ angular_damp = 3.0
 script = ExtResource("1_4flbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CylinderMesh_i3pqv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -41,15 +43,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 emitting = false
 
 [node name="RightBooster" parent="." instance=ExtResource("5_k53q1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15710592, -1, 0)
 emitting = false
 
 [node name="LeftBooster" parent="." instance=ExtResource("5_k53q1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14812829, -1, 0)
 emitting = false
 
 [node name="ExplosionParticles" parent="." instance=ExtResource("6_fhl08")]
 
 [node name="SuccessParticles" parent="." instance=ExtResource("7_vtle1")]
+
+[node name="Body" parent="." instance=ExtResource("8_od3ui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
