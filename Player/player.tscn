@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3l7ssas4odat"]
+[gd_scene load_steps=10 format=3 uid="uid://c3l7ssas4odat"]
 
 [ext_resource type="Script" uid="uid://dqpwp502kfjaf" path="res://Player/player.gd" id="1_4flbx"]
 [ext_resource type="AudioStream" uid="uid://bpehih57nij7r" path="res://assets/ProjectBoost_Audio/SFX - Death Explosion.ogg" id="2_4ntmi"]
 [ext_resource type="AudioStream" uid="uid://c28bxx48oi0xn" path="res://assets/ProjectBoost_Audio/SFX - Success.ogg" id="3_btcbx"]
 [ext_resource type="AudioStream" uid="uid://cye5pd8kmddtb" path="res://assets/ProjectBoost_Audio/SFX - Main engine thrust.ogg" id="4_gwnis"]
-[ext_resource type="PackedScene" uid="uid://ux6ivcx1ovdp" path="res://assets/Particles/booster_particles.tscn" id="5_k53q1"]
+[ext_resource type="PackedScene" uid="uid://ux6ivcx1ovdp" path="res://Particles/Particles/booster_particles.tscn" id="5_k53q1"]
+[ext_resource type="PackedScene" uid="uid://dcecb8hw7dbrv" path="res://Particles/18_PB_G3D - One Shot Particles/Particles/explosion_particles.tscn" id="6_fhl08"]
+[ext_resource type="PackedScene" uid="uid://jfwajmrh6ca7" path="res://Particles/18_PB_G3D - One Shot Particles/Particles/success_particles.tscn" id="7_vtle1"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_i3pqv"]
 
@@ -45,5 +47,9 @@ emitting = false
 [node name="LeftBooster" parent="." instance=ExtResource("5_k53q1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -1, 0)
 emitting = false
+
+[node name="ExplosionParticles" parent="." instance=ExtResource("6_fhl08")]
+
+[node name="SuccessParticles" parent="." instance=ExtResource("7_vtle1")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
