@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bt1h1k6bxsyst" path="res://Levels/landing_pad.gd" id="1_2385j"]
 [ext_resource type="PackedScene" uid="uid://c3l7ssas4odat" path="res://Player/player.tscn" id="2_c5oim"]
+[ext_resource type="PackedScene" uid="uid://cqr44gl41xh3b" path="res://Levels/floor.tscn" id="3_c5oim"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_54b6e"]
 sky_top_color = Color(0.2987501, 0.5316506, 1, 1)
@@ -16,9 +17,6 @@ background_mode = 2
 sky = SubResource("Sky_s41d2")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54b6e"]
-albedo_color = Color(0.44236898, 0.1863504, 0.08769206, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ty1rc"]
 albedo_color = Color(1, 0.75, 0, 1)
@@ -38,14 +36,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gtnvv")
 
-[node name="Floor" type="CSGBox3D" parent="." groups=["Floor"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
-use_collision = true
-size = Vector3(30, 8, 5)
-material = SubResource("StandardMaterial3D_54b6e")
-
 [node name="Obstacle" type="CSGBox3D" parent="." groups=["Floor"]]
-transform = Transform3D(0.7966038, 0.6045018, 0, -0.6045018, 0.7966038, 0, 0, 0, 1, -2.638826, 6.611542, -0.19297409)
+transform = Transform3D(0.7966038, 0.6045018, 0, -0.6045018, 0.7966038, 0, 0, 0, 1, -2.638826, 4.0010257, -0.19297409)
 use_collision = true
 size = Vector3(1, 10.528748, 3)
 material = SubResource("StandardMaterial3D_ty1rc")
@@ -57,7 +49,7 @@ size = Vector3(1, 12.755737, 3)
 material = SubResource("StandardMaterial3D_ty1rc")
 
 [node name="Obstacle3" type="CSGBox3D" parent="." groups=["Floor"]]
-transform = Transform3D(0.7966038, 0.6045018, 0, 0.6045018, -0.7966038, 8.742278e-08, 5.2847223e-08, -6.964132e-08, -1, 3.145611, 6.576657, -0.19297397)
+transform = Transform3D(0.7966038, 0.6045018, 0, 0.6045018, -0.7966038, 8.742278e-08, 5.2847223e-08, -6.964132e-08, -1, 3.145611, 3.819035, -0.19297397)
 use_collision = true
 size = Vector3(1, 10.441162, 3)
 material = SubResource("StandardMaterial3D_ty1rc")
@@ -88,3 +80,6 @@ transform = Transform3D(1, 0, 0, 0, 0.99065524, 0.13638993, 0, -0.13638993, 0.99
 [node name="Player" parent="." instance=ExtResource("2_c5oim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.2078178, 0)
 max_contacts_reported = 10
+
+[node name="Floor2" parent="." instance=ExtResource("3_c5oim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)

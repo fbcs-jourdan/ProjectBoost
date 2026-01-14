@@ -2,23 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bt1h1k6bxsyst" path="res://Levels/landing_pad.gd" id="1_gtnvv"]
 [ext_resource type="PackedScene" uid="uid://c3l7ssas4odat" path="res://Player/player.tscn" id="1_s41d2"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_54b6e"]
-sky_top_color = Color(0.2987501, 0.5316506, 1, 1)
-sky_horizon_color = Color(0.6987486, 0.7492237, 0.8573111, 1)
-ground_horizon_color = Color(0.6987486, 0.7492237, 0.8573111, 1)
-
-[sub_resource type="Sky" id="Sky_s41d2"]
-sky_material = SubResource("ProceduralSkyMaterial_54b6e")
-
-[sub_resource type="Environment" id="Environment_gtnvv"]
-background_mode = 2
-sky = SubResource("Sky_s41d2")
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54b6e"]
-albedo_color = Color(0.44236898, 0.1863504, 0.08769206, 1)
+[ext_resource type="PackedScene" uid="uid://cqr44gl41xh3b" path="res://Levels/floor.tscn" id="1_xto7t"]
+[ext_resource type="Texture2D" uid="uid://c3wjpilshyhtl" path="res://Particles/18_PB_G3D - One Shot Particles/Particles/yoru.png" id="3_wav5q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s41d2"]
 albedo_color = Color(0, 1, 0.35000014, 1)
@@ -26,20 +11,15 @@ albedo_color = Color(0, 1, 0.35000014, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtnvv"]
 albedo_color = Color(0, 0.5333333, 1, 1)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_gtnvv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wav5q"]
+albedo_texture = ExtResource("3_wav5q")
+
 [node name="Level" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.95371693, 0.08439811, -0.28861904, 0, 0.9598053, 0.2806667, 0.30070582, 0.2676766, -0.91538256, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_gtnvv")
-
-[node name="Floor" type="CSGBox3D" parent="." groups=["Floor"]]
+[node name="Floor" parent="." instance=ExtResource("1_xto7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
-use_collision = true
-size = Vector3(30, 8, 5)
-material = SubResource("StandardMaterial3D_54b6e")
 
 [node name="LandingPad" type="CSGBox3D" parent="." groups=["Goal"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
@@ -61,3 +41,9 @@ transform = Transform3D(1, 0, 0, 0, 0.9995598, -0.029666243, 0, 0.029666243, 0.9
 [node name="Player" parent="." instance=ExtResource("1_s41d2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.2078178, 0)
 max_contacts_reported = 10
+
+[node name="yoru" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.22, 0, 0, 0, 0.45413622, -5.2002077, 0, 5.2002077, 0.45413622, 0, 4.4080334, -2.1966085)
+mesh = SubResource("PlaneMesh_gtnvv")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_wav5q")

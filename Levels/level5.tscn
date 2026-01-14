@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5y1eonqoy7qy"]
+
+[ext_resource type="Script" uid="uid://bt1h1k6bxsyst" path="res://Levels/landing_pad.gd" id="1_fh8n1"]
+[ext_resource type="PackedScene" uid="uid://c3l7ssas4odat" path="res://Player/player.tscn" id="2_0n3a6"]
+[ext_resource type="Texture2D" uid="uid://c3wjpilshyhtl" path="res://Particles/18_PB_G3D - One Shot Particles/Particles/yoru.png" id="4_fh8n1"]
+[ext_resource type="PackedScene" uid="uid://cqr44gl41xh3b" path="res://Levels/floor.tscn" id="4_fj68v"]
+[ext_resource type="PackedScene" uid="uid://cajiqpj3cgule" path="res://Levels/ui.tscn" id="5_0n3a6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s41d2"]
+albedo_color = Color(0, 1, 0.35000014, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtnvv"]
+albedo_color = Color(0, 0.5333333, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gtnvv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wav5q"]
+albedo_texture = ExtResource("4_fh8n1")
+
+[node name="Level" type="Node3D"]
+
+[node name="UI" parent="." instance=ExtResource("5_0n3a6")]
+
+[node name="Floor" parent="." instance=ExtResource("4_fj68v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+
+[node name="LandingPad" type="CSGBox3D" parent="." groups=["Goal"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.331792, 0, 0)
+use_collision = true
+size = Vector3(2, 0.4, 2)
+material = SubResource("StandardMaterial3D_s41d2")
+script = ExtResource("1_fh8n1")
+file_path = "uid://d080qh26jcov4"
+
+[node name="LaunchPad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.91618, 0, 0)
+use_collision = true
+size = Vector3(2, 0.4, 2)
+material = SubResource("StandardMaterial3D_gtnvv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9995598, -0.029666243, 0, 0.029666243, 0.9995598, 0, 3.514, 8.89)
+
+[node name="Player" parent="." instance=ExtResource("2_0n3a6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.910696, 1.2078178, 0)
+max_contacts_reported = 10
+starting_fuel = 2080
+
+[node name="yoru" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.435, 0, 0, 0, -1.5058573e-07, -6.145, 0, 3.445, -2.6860647e-07, 0, 4.943966, -2.1966085)
+mesh = SubResource("PlaneMesh_gtnvv")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_wav5q")
